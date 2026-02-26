@@ -1,27 +1,49 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, useSearch } from "@tanstack/react-router";
 import { useStore } from "@tanstack/react-store";
 import { Book, Pencil, Target } from "lucide-react";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Celebration } from "@/components/Celebration";
 import { ControlButtons } from "@/components/ControlButtons";
 import type { HanziCanvasHandle } from "@/components/HanziCanvas";
 import { HanziCanvas } from "@/components/HanziCanvas";
 import { ModeSwitcher } from "@/components/ModeSwitcher";
 import { NavigationButtons } from "@/components/NavigationButtons";
-import { hanziStore } from "@/stores/hanziStore";
+import { hanziStore, setCharacters } from "@/stores/hanziStore";
 
 export const Route = createFileRoute("/")({
 	component: IndexPage,
+	validateSearch: (search: Record<string, unknown>) => {
+		return {
+			q: typeof search.q === "string" ? search.q : undefined,
+		};
+	},
 });
 
 function IndexPage() {
 	const navigate = useNavigate();
+	const search = useSearch({ from: "/" });
 	const characters = useStore(hanziStore, (s) => s.characters);
 	const currentIndex = useStore(hanziStore, (s) => s.currentIndex);
 	const [celebrationTrigger, setCelebrationTrigger] = useState(false);
 	const hanziCanvasRef = useRef<HanziCanvasHandle>(null);
+	const processedQRef = useRef<string | null>(null);
 
 	const currentCharacter = characters[currentIndex] || "";
+
+	// 处理 URL 中的 q 参数
+	useEffect(() => {
+		if (search.q && search.q !== processedQRef.current) {
+			processedQRef.current = search.q;
+			// 从 q 参数中提取汉字
+			const hanziChars = search.q
+				.split("")
+				.filter((char) => /[\u4e00-\u9fa5]/.test(char));
+
+			if (hanziChars.length > 0) {
+				setCharacters(hanziChars);
+			}
+		}
+	}, [search.q]);
 
 	const handleComplete = useCallback(() => {
 		setCelebrationTrigger(true);
