@@ -1,222 +1,156 @@
-Welcome to your new TanStack Start app! 
+# 天天识字 🎯
 
-# Getting Started
+专为 3-5 岁儿童设计的汉字书写学习应用，让学习汉字变得有趣而简单。
 
-To run this application:
+![天天识字](https://img.shields.io/badge/版本-1.0.0-brightgreen)
+![React](https://img.shields.io/badge/React-19-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38BDF8)
+
+## ✨ 功能特性
+
+- **双模式学习**
+  - 👀 **观看模式**：观看汉字笔画动画演示
+  - ✏️ **练习模式**：跟随提示手写练习，实时反馈
+
+- **丰富的学习资源**
+  - 📚 内置多个汉字集（常用字、数字、自然等）
+  - ✏️ 自定义汉字输入，支持任意字符集
+
+- **友好的交互体验**
+  - 🎨 Duolingo 风格的圆润 UI 设计
+  - 🎉 完成书写时的撒花庆祝动画
+  - 📱 完美适配移动端和桌面端
+
+- **智能加载**
+  - 🌐 CDN 自动切换，国内访问更快速
+  - ⚡ 按需加载字符数据，节省流量
+
+## 🚀 快速开始
+
+### 安装依赖
 
 ```bash
 pnpm install
+```
+
+### 启动开发服务器
+
+```bash
 pnpm dev
 ```
 
-# Building For Production
+访问 http://localhost:3000 开始学习！
 
-To build this application for production:
+### 构建生产版本
 
 ```bash
 pnpm build
 ```
 
-## Testing
+## 📖 使用指南
 
-This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
+### 选择汉字集
 
-```bash
-pnpm test
+1. 点击 **📚 汉字集** 从预设列表中选择
+2. 或点击 **✏️ 自定义** 输入你想学习的汉字
+
+### 书写练习
+
+- **观看模式**：点击播放观看笔画顺序动画
+- **练习模式**：按照虚线提示书写，系统会实时判断正确性
+- 点击 **重播/重新开始** 可以重新练习
+
+### URL 参数分享
+
+支持通过 URL 参数直接分享字符集：
+
+```
+/?q=今天天气真不错
+/?q=我爱学习汉字
 ```
 
-## Styling
+系统会自动提取参数中的汉字并创建练习卡片。
 
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
+## 🛠️ 技术栈
 
-### Removing Tailwind CSS
+- **框架**：[React 19](https://react.dev/)
+- **路由**：[TanStack Router](https://tanstack.com/router)
+- **状态管理**：[TanStack Store](https://tanstack.com/store)
+- **样式**：[Tailwind CSS 4](https://tailwindcss.com/)
+- **汉字动画**：[HanziWriter](https://github.com/chanind/hanzi-writer)
+- **图标**：[Lucide React](https://lucide.dev/)
+- **撒花动画**：[canvas-confetti](https://github.com/catdad/canvas-confetti)
 
-If you prefer not to use Tailwind CSS:
+## 📁 项目结构
 
-1. Remove the demo pages in `src/routes/demo/`
-2. Replace the Tailwind import in `src/styles.css` with your own styles
-3. Remove `tailwindcss()` from the plugins array in `vite.config.ts`
-4. Uninstall the packages: `pnpm add @tailwindcss/vite tailwindcss --dev`
-
-## Linting & Formatting
-
-This project uses [Biome](https://biomejs.dev/) for linting and formatting. The following scripts are available:
-
-
-```bash
-pnpm lint
-pnpm format
-pnpm check
+```
+src/
+├── components/          # 组件目录
+│   ├── Celebration.tsx   # 撒花庆祝动画
+│   ├── ControlButtons.tsx # 控制按钮
+│   ├── HanziCanvas.tsx   # 汉字画布（核心组件）
+│   ├── ModeSwitcher.tsx   # 模式切换器
+│   └── NavigationButtons.tsx # 导航按钮
+├── data/
+│   └── presets.ts        # 预设汉字集数据
+├── routes/              # 路由页面
+│   ├── index.tsx        # 首页/练习页
+│   ├── presets.tsx      # 汉字集选择页
+│   └── custom.tsx       # 自定义汉字页
+├── stores/
+│   └── hanziStore.ts    # 汉字状态管理
+└── styles.css          # 全局样式
 ```
 
+## 🌟 预设汉字集
 
-# Paraglide i18n
+| 名称 | 描述 | 字符数 |
+|------|------|--------|
+| 基础字 | 一二三人大小上下等基础汉字 | 8 |
+| 大自然 | 山水火日月云雨雪等自然元素 | 8 |
+| 小动物 | 马牛羊鸟鱼虫犬等动物 | 7 |
 
-This add-on wires up ParaglideJS for localized routing and message formatting.
+## 🎨 自定义
 
-- Messages live in `project.inlang/messages`.
-- URLs are localized through the Paraglide Vite plugin and router `rewrite` hooks.
-- Run the dev server or build to regenerate the `src/paraglide` outputs.
+### 添加新的预设汉字集
 
+编辑 `src/data/presets.ts`：
 
-## Shadcn
-
-Add components using the latest version of [Shadcn](https://ui.shadcn.com/).
-
-```bash
-pnpm dlx shadcn@latest add button
-```
-
-
-
-## Routing
-
-This project uses [TanStack Router](https://tanstack.com/router) with file-based routing. Routes are managed as files in `src/routes`.
-
-### Adding A Route
-
-To add a new route to your application just add a new file in the `./src/routes` directory.
-
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
-
-```tsx
-import { Link } from "@tanstack/react-router";
-```
-
-Then anywhere in your JSX you can use it like so:
-
-```tsx
-<Link to="/about">About</Link>
-```
-
-This will create a link that will navigate to the `/about` route.
-
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
-
-### Using A Layout
-
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you render `{children}` in the `shellComponent`.
-
-Here is an example layout that includes a header:
-
-```tsx
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-
-export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'My App' },
-    ],
-  }),
-  shellComponent: ({ children }) => (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <header>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-          </nav>
-        </header>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  ),
-})
-```
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-## Server Functions
-
-TanStack Start provides server functions that allow you to write server-side code that seamlessly integrates with your client components.
-
-```tsx
-import { createServerFn } from '@tanstack/react-start'
-
-const getServerTime = createServerFn({
-  method: 'GET',
-}).handler(async () => {
-  return new Date().toISOString()
-})
-
-// Use in a component
-function MyComponent() {
-  const [time, setTime] = useState('')
-  
-  useEffect(() => {
-    getServerTime().then(setTime)
-  }, [])
-  
-  return <div>Server time: {time}</div>
-}
-```
-
-## API Routes
-
-You can create API routes by using the `server` property in your route definitions:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-import { json } from '@tanstack/react-start'
-
-export const Route = createFileRoute('/api/hello')({
-  server: {
-    handlers: {
-      GET: () => json({ message: 'Hello, World!' }),
-    },
+```typescript
+export const presets: Preset[] = [
+  // ... 其他预设
+  {
+    id: "my-custom",
+    name: "我的汉字集",
+    icon: "📝",
+    characters: ["你", "的", "汉", "字"],
   },
-})
+];
 ```
 
-## Data Fetching
+### 修改主题颜色
 
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
+编辑 `src/styles.css` 中的 Tailwind 配置或 `tailwind.config.ts`。
 
-For example:
+## 📱 移动端支持
 
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
+应用已针对移动端优化：
+- 触摸友好的大按钮
+- 防止双击缩放
+- 流畅的动画效果
+- 响应式布局
 
-export const Route = createFileRoute('/people')({
-  loader: async () => {
-    const response = await fetch('https://swapi.dev/api/people')
-    return response.json()
-  },
-  component: PeopleComponent,
-})
+## 🤝 贡献
 
-function PeopleComponent() {
-  const data = Route.useLoaderData()
-  return (
-    <ul>
-      {data.results.map((person) => (
-        <li key={person.name}>{person.name}</li>
-      ))}
-    </ul>
-  )
-}
-```
+欢迎提交 Issue 和 Pull Request！
 
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
+## 📄 许可证
 
-# Demo files
+MIT License
 
-Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
+## 🙏 致谢
 
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
-
-For TanStack Start specific documentation, visit [TanStack Start](https://tanstack.com/start).
+- [HanziWriter](https://github.com/chanind/hanzi-writer) - 汉字书写动画库
+- [canvas-confetti](https://github.com/catdad/canvas-confetti) - 撒花动画效果
+- [TanStack](https://tanstack.com/) - 优秀的 React 开发工具链
