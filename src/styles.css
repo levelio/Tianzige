@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 防止移动端双击缩放 */
+* {
+  touch-action: manipulation;
+}
+
+/* 自定义动画 */
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 0.5s ease-in-out;
+}
+
+/* 按钮点击反馈 */
+button:active {
+  transform: scale(0.95);
+}
