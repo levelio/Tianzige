@@ -11,6 +11,9 @@ import { cloudflare } from '@cloudflare/vite-plugin'
 
 const config = defineConfig({
   plugins: [
+    tanstackStart(),
+    viteReact(),
+    tailwindcss(),
     devtools(),
     paraglideVitePlugin({
       project: './project.inlang',
@@ -19,9 +22,6 @@ const config = defineConfig({
     }),
     cloudflare({ viteEnvironment: { name: 'ssr' } }),
     tsconfigPaths({ projects: ['./tsconfig.json'] }),
-    tailwindcss(),
-    tanstackStart(),
-    viteReact(),
   ],
 })
 
