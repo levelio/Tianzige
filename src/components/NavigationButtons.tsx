@@ -10,7 +10,6 @@ interface NavigationButtonsProps {
 export function NavigationButtons({ onPrevious, onNext }: NavigationButtonsProps) {
   const currentIndex = useStore(hanziStore, (s) => s.currentIndex)
   const characters = useStore(hanziStore, (s) => s.characters)
-  const mode = useStore(hanziStore, (s) => s.mode)
 
   const hasPrevious = currentIndex > 0
   const hasNext = currentIndex < characters.length - 1

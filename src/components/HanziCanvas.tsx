@@ -19,7 +19,7 @@ const SVG_URL = 'https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/'
 export const HanziCanvas = forwardRef<HanziCanvasHandle, HanziCanvasProps>(
   ({ character, onComplete, onStrokeChange }, ref) => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const writerRef = useRef<HanziWriter | null>(null)
+  const writerRef = useRef<any | null>(null)
   const [isReady, setIsReady] = useState(false)
   const mode = useStore(hanziStore, (s) => s.mode)
 

@@ -17,7 +17,6 @@ export function Celebration({ trigger, type = 'confetti', onComplete }: Celebrat
     const animate = () => {
       const now = Date.now()
       const remaining = Math.max(0, end - now)
-      const progress = 1 - remaining / duration
 
       if (type === 'stars') {
         // 星星效果
