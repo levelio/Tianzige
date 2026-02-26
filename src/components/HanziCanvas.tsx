@@ -1,7 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useImperativeHandle, forwardRef } from 'react'
 import HanziWriter from 'hanzi-writer'
 import { useStore } from '@tanstack/react-store'
 import { hanziStore } from '#/stores/hanziStore'
+
+export interface HanziCanvasHandle {
+  animateCharacter: () => void
+  replay: () => void
+}
 
 interface HanziCanvasProps {
   character: string
@@ -11,11 +16,49 @@ interface HanziCanvasProps {
 
 const SVG_URL = 'https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/'
 
-export function HanziCanvas({ character, onComplete, onStrokeChange }: HanziCanvasProps) {
+export const HanziCanvas = forwardRef<HanziCanvasHandle, HanziCanvasProps>(
+  ({ character, onComplete, onStrokeChange }, ref) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const writerRef = useRef<HanziWriter | null>(null)
   const [isReady, setIsReady] = useState(false)
   const mode = useStore(hanziStore, (s) => s.mode)
+
+  // 暴露方法给父组件
+  useImperativeHandle(
+    ref,
+    () => ({
+      animateCharacter: () => {
+        if (writerRef.current && isReady) {
+          writerRef.current.animateCharacter()
+        }
+      },
+      replay: () => {
+        if (writerRef.current && isReady) {
+          writerRef.current.hideCharacter()
+          setTimeout(() => {
+            if (writerRef.current) {
+              if (mode === 'watch') {
+                writerRef.current.animateCharacter()
+              } else {
+                writerRef.current.quiz({
+                  onMistake: () => {
+                    onStrokeChange?.(false)
+                  },
+                  onCorrectStroke: () => {
+                    onStrokeChange?.(true)
+                  },
+                  onComplete: () => {
+                    onComplete?.()
+                  },
+                })
+              }
+            }
+          }, 100)
+        }
+      },
+    }),
+    [isReady, mode, onStrokeChange, onComplete]
+  )
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -70,9 +113,10 @@ export function HanziCanvas({ character, onComplete, onStrokeChange }: HanziCanv
 
     // 根据模式设置不同的行为
     if (mode === 'watch') {
-      writer.quiz()
+      // 观看模式：播放完整动画
+      writer.animateCharacter()
     } else {
-      // 书写模式
+      // 书写模式：启用描红练习
       writer.quiz({
         onMistake: () => {
           onStrokeChange?.(false)
@@ -97,3 +141,6 @@ export function HanziCanvas({ character, onComplete, onStrokeChange }: HanziCanv
     </div>
   )
 }
+)
+
+HanziCanvas.displayName = 'HanziCanvas'

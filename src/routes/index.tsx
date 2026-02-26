@@ -2,13 +2,13 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useStore } from '@tanstack/react-store'
 import { hanziStore } from '#/stores/hanziStore'
 import { presets } from '#/data/presets'
-import { HanziCanvas } from '#/components/HanziCanvas'
+import { HanziCanvas, HanziCanvasHandle } from '#/components/HanziCanvas'
 import { NavigationButtons } from '#/components/NavigationButtons'
 import { ControlButtons } from '#/components/ControlButtons'
 import { ModeSwitcher } from '#/components/ModeSwitcher'
 import { Celebration } from '#/components/Celebration'
 import { Mascot } from '#/components/Mascot'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 export const Route = createFileRoute('/')({
   component: IndexPage,
@@ -19,12 +19,21 @@ function IndexPage() {
   const characters = useStore(hanziStore, (s) => s.characters)
   const currentIndex = useStore(hanziStore, (s) => s.currentIndex)
   const [celebrationTrigger, setCelebrationTrigger] = useState(false)
+  const hanziCanvasRef = useRef<HanziCanvasHandle>(null)
 
   const currentCharacter = characters[currentIndex] || ''
 
   const handleComplete = () => {
     setCelebrationTrigger(true)
     setTimeout(() => setCelebrationTrigger(false), 3000)
+  }
+
+  const handlePlay = () => {
+    hanziCanvasRef.current?.animateCharacter()
+  }
+
+  const handleReplay = () => {
+    hanziCanvasRef.current?.replay()
   }
 
   const handleSelectPreset = () => {
@@ -97,6 +106,7 @@ function IndexPage() {
 
         {/* 汉字画布 */}
         <HanziCanvas
+          ref={hanziCanvasRef}
           character={currentCharacter}
           onComplete={handleComplete}
         />
@@ -105,7 +115,7 @@ function IndexPage() {
         <ModeSwitcher />
 
         {/* 控制按钮 */}
-        <ControlButtons />
+        <ControlButtons onPlay={handlePlay} onReplay={handleReplay} />
       </main>
 
       {/* 庆祝动画 */}
