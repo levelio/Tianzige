@@ -1,6 +1,6 @@
 import { Eye, Pencil } from 'lucide-react'
 import { useStore } from '@tanstack/react-store'
-import { hanziStore, setMode } from '#/stores/hanziStore'
+import { hanziStore, setMode } from '@/stores/hanziStore'
 
 export function ModeSwitcher() {
   const mode = useStore(hanziStore, (s) => s.mode)

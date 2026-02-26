@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useImperativeHandle, forwardRef } from 'react'
 import HanziWriter from 'hanzi-writer'
 import { useStore } from '@tanstack/react-store'
-import { hanziStore } from '#/stores/hanziStore'
+import { hanziStore } from '@/stores/hanziStore'
 
 export interface HanziCanvasHandle {
   animateCharacter: () => void

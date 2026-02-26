@@ -1,5 +1,5 @@
 import { useStore } from '@tanstack/react-store'
-import { hanziStore } from '#/stores/hanziStore'
+import { hanziStore } from '@/stores/hanziStore'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface NavigationButtonsProps {

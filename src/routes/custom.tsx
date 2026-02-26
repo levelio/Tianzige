@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { ArrowLeft } from 'lucide-react'
 import { useState } from 'react'
-import { setCharacters } from '#/stores/hanziStore'
+import { setCharacters } from '@/stores/hanziStore'
 
 export const Route = createFileRoute('/custom')({
   component: CustomPage,

@@ -1,6 +1,6 @@
 import { Play, RotateCcw } from 'lucide-react'
 import { useStore } from '@tanstack/react-store'
-import { hanziStore } from '#/stores/hanziStore'
+import { hanziStore } from '@/stores/hanziStore'
 
 interface ControlButtonsProps {
   onPlay?: () => void

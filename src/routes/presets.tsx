@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { presets } from '#/data/presets'
-import { setCharacters } from '#/stores/hanziStore'
+import { presets } from '@/data/presets'
+import { setCharacters } from '@/stores/hanziStore'
 import { ArrowLeft } from 'lucide-react'
 
 export const Route = createFileRoute('/presets')({
