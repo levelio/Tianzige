@@ -17,7 +17,9 @@ function RootComponent() {
         <title>天天识字</title>
       </head>
       <body>
-        <Outlet />
+        <div id="app">
+          <Outlet />
+        </div>
         <TanStackRouterDevtools />
       </body>
     </html>
