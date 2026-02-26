@@ -1,7 +1,16 @@
-import { StartClient } from '@tanstack/react-start/client'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 
-import App from './app'
+import "./styles.css";
+import App from "./app";
 
-const rootElement = document.getElementById('app')
+const rootElement = document.getElementById("app");
 
-StartClient(App, rootElement)
+if (rootElement) {
+	const root = createRoot(rootElement);
+	root.render(
+		<StrictMode>
+			<App />
+		</StrictMode>,
+	);
+}
