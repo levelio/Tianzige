@@ -20,7 +20,27 @@ interface HanziCanvasProps {
 	onStrokeChange?: (isCorrect: boolean) => void;
 }
 
-const SVG_URL = "https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/";
+// CDN 备份列表，按优先级排序
+const CDN_URLS = [
+	"https://unpkg.com/hanzi-writer-data@2.0/",
+	"https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/",
+];
+
+// 尝试从多个 CDN 加载数据
+async function fetchCharacterData(char: string): Promise<unknown> {
+	for (const url of CDN_URLS) {
+		try {
+			const response = await fetch(`${url}${char}.json`, { signal: AbortSignal.timeout(5000) });
+			if (response.ok) {
+				return await response.json();
+			}
+		} catch {
+			// 尝试下一个 CDN
+			continue;
+		}
+	}
+	throw new Error(`Failed to load character data for: ${char}`);
+}
 
 export const HanziCanvas = forwardRef<HanziCanvasHandle, HanziCanvasProps>(
 	({ character, onComplete, onStrokeChange }, ref) => {
@@ -95,8 +115,7 @@ export const HanziCanvas = forwardRef<HanziCanvasHandle, HanziCanvasProps>(
 			const controller = new AbortController();
 			abortControllerRef.current = controller;
 
-			fetch(`${SVG_URL}${character}.json`, { signal: controller.signal })
-				.then((res) => res.json())
+			fetchCharacterData(character)
 				.then((data) => {
 					// 检查是否已被取消或字符已变化
 					if (
