@@ -1,6 +1,6 @@
 import { useStore } from '@tanstack/react-store'
-import { hanziStore } from '@/stores/hanziStore'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { hanziStore } from '@/stores/hanziStore'
 
 interface NavigationButtonsProps {
   onPrevious?: () => void

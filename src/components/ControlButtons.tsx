@@ -1,5 +1,5 @@
-import { Play, RotateCcw } from 'lucide-react'
 import { useStore } from '@tanstack/react-store'
+import { Play, RotateCcw } from 'lucide-react'
 import { hanziStore } from '@/stores/hanziStore'
 
 interface ControlButtonsProps {

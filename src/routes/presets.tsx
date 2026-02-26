@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { ArrowLeft } from 'lucide-react'
 import { presets } from '@/data/presets'
 import { setCharacters } from '@/stores/hanziStore'
-import { ArrowLeft } from 'lucide-react'
 
 export const Route = createFileRoute('/presets')({
   component: PresetsPage,
@@ -52,9 +52,9 @@ function PresetsPage() {
                 </div>
               </div>
               <div className="mt-4 flex flex-wrap gap-2">
-                {preset.characters.map((char, i) => (
+                {preset.characters.map((char) => (
                   <span
-                    key={i}
+                    key={char}
                     className="w-10 h-10 flex items-center justify-center bg-emerald-50 rounded-xl text-lg font-semibold text-emerald-700"
                   >
                     {char}

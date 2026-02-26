@@ -1,14 +1,14 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useStore } from '@tanstack/react-store'
-import { hanziStore } from '@/stores/hanziStore'
-import { HanziCanvas } from '@/components/HanziCanvas'
-import type { HanziCanvasHandle } from '@/components/HanziCanvas'
-import { NavigationButtons } from '@/components/NavigationButtons'
-import { ControlButtons } from '@/components/ControlButtons'
-import { ModeSwitcher } from '@/components/ModeSwitcher'
+import { useRef, useState } from 'react'
 import { Celebration } from '@/components/Celebration'
+import { ControlButtons } from '@/components/ControlButtons'
+import type { HanziCanvasHandle } from '@/components/HanziCanvas'
+import { HanziCanvas } from '@/components/HanziCanvas'
 import { Mascot } from '@/components/Mascot'
-import { useState, useRef } from 'react'
+import { ModeSwitcher } from '@/components/ModeSwitcher'
+import { NavigationButtons } from '@/components/NavigationButtons'
+import { hanziStore } from '@/stores/hanziStore'
 
 export const Route = createFileRoute('/')({
   component: IndexPage,

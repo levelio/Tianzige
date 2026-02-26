@@ -55,9 +55,9 @@ function CustomPage() {
             <div className="mt-4 p-4 bg-gray-50 rounded-2xl">
               <p className="text-sm text-gray-500 mb-2">识别到 {input.length} 个字符：</p>
               <div className="flex flex-wrap gap-2">
-                {input.split('').map((char, i) => (
+                {input.split('').map((char) => (
                   <span
-                    key={i}
+                    key={char}
                     className={`w-10 h-10 flex items-center justify-center rounded-xl text-xl font-semibold ${
                       /[\u4e00-\u9fa5]/.test(char)
                         ? 'bg-emerald-100 text-emerald-700'
