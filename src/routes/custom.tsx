@@ -27,6 +27,7 @@ function CustomPage() {
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-teal-50 p-4">
       <div className="max-w-md mx-auto">
         <button
+          type="button"
           onClick={() => navigate({ to: '/' })}
           className="flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-6"
         >
@@ -71,6 +72,7 @@ function CustomPage() {
           )}
 
           <button
+            type="button"
             onClick={handleSubmit}
             disabled={!input || !/[\u4e00-\u9fa5]/.test(input)}
             className="w-full mt-6 px-6 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold transition-colors shadow-lg"

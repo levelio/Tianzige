@@ -22,6 +22,7 @@ function PresetsPage() {
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-teal-50 p-4">
       <div className="max-w-md mx-auto">
         <button
+          type="button"
           onClick={() => navigate({ to: '/' })}
           className="flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-6"
         >
@@ -34,6 +35,7 @@ function PresetsPage() {
         <div className="space-y-4">
           {presets.map((preset) => (
             <button
+              type="button"
               key={preset.id}
               onClick={() => handleSelectPreset(preset.id)}
               className="w-full bg-white rounded-3xl shadow-lg p-6 hover:shadow-xl transition-shadow text-left"

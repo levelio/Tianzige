@@ -31,6 +31,7 @@ export function NavigationButtons({ onPrevious, onNext }: NavigationButtonsProps
   return (
     <div className="flex items-center justify-between w-full max-w-md px-4">
       <button
+        type="button"
         onClick={handlePrevious}
         disabled={!hasPrevious}
         className="p-4 rounded-full bg-emerald-500 hover:bg-emerald-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors shadow-lg"
@@ -44,6 +45,7 @@ export function NavigationButtons({ onPrevious, onNext }: NavigationButtonsProps
       </div>
 
       <button
+        type="button"
         onClick={handleNext}
         disabled={!hasNext}
         className="p-4 rounded-full bg-emerald-500 hover:bg-emerald-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors shadow-lg"

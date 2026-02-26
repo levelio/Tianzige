@@ -8,6 +8,7 @@ export function ModeSwitcher() {
   return (
     <div className="flex gap-2 bg-gray-100 rounded-2xl p-1">
       <button
+        type="button"
         onClick={() => setMode('watch')}
         className={`flex items-center gap-2 px-4 py-2 rounded-xl font-semibold transition-all ${
           mode === 'watch'
@@ -20,6 +21,7 @@ export function ModeSwitcher() {
       </button>
 
       <button
+        type="button"
         onClick={() => setMode('practice')}
         className={`flex items-center gap-2 px-4 py-2 rounded-xl font-semibold transition-all ${
           mode === 'practice'

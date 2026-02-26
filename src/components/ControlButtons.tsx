@@ -14,6 +14,7 @@ export function ControlButtons({ onPlay, onReplay }: ControlButtonsProps) {
     <div className="flex gap-4">
       {mode === 'watch' && (
         <button
+          type="button"
           onClick={onPlay}
           className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-semibold transition-colors shadow-lg"
         >
@@ -23,6 +24,7 @@ export function ControlButtons({ onPlay, onReplay }: ControlButtonsProps) {
       )}
 
       <button
+        type="button"
         onClick={onReplay}
         className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold transition-colors shadow-lg"
       >

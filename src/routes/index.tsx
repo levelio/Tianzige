@@ -59,6 +59,7 @@ function IndexPage() {
 
           <div className="space-y-4">
             <button
+              type="button"
               onClick={handleSelectPreset}
               className="w-full px-8 py-4 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-lg transition-colors shadow-lg"
             >
@@ -66,6 +67,7 @@ function IndexPage() {
             </button>
 
             <button
+              type="button"
               onClick={handleCustom}
               className="w-full px-8 py-4 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-semibold text-lg transition-colors shadow-lg"
             >
@@ -92,6 +94,7 @@ function IndexPage() {
           <h1 className="text-xl font-bold text-gray-800">天天识字</h1>
         </div>
         <button
+          type="button"
           onClick={() => hanziStore.setState((s) => ({ ...s, characters: [], currentIndex: -1 }))}
           className="text-gray-500 hover:text-gray-700"
         >
@@ -124,6 +127,7 @@ function IndexPage() {
       {/* 底部导航 */}
       <nav className="flex justify-center gap-4 p-4 bg-white/80 backdrop-blur-sm">
         <button
+          type="button"
           onClick={handleSelectPreset}
           className="flex flex-col items-center gap-1 text-gray-600 hover:text-gray-800"
         >
@@ -131,6 +135,7 @@ function IndexPage() {
           <span className="text-xs">汉字集</span>
         </button>
         <button
+          type="button"
           onClick={handleCustom}
           className="flex flex-col items-center gap-1 text-gray-600 hover:text-gray-800"
         >
