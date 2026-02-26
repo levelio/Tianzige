@@ -1,9 +1,9 @@
 import { mutation, store } from '@tanstack/store'
 
-interface HanziState {
+export interface HanziState {
   // 当前汉字列表
   characters: string[]
-  // 当前索引
+  // 当前索引 (当字符列表为空时为 -1)
   currentIndex: number
   // 当前模式：'watch' | 'practice'
   mode: 'watch' | 'practice'
@@ -13,14 +13,14 @@ interface HanziState {
 
 export const hanziStore = store<HanziState>({
   characters: [],
-  currentIndex: 0,
+  currentIndex: -1,  // 使用 -1 表示无有效字符
   mode: 'watch',
   isLoading: false,
 })
 
 export const setCharacters = mutation(hanziStore, 'setCharacters', (draft, chars: string[]) => {
   draft.characters = chars
-  draft.currentIndex = 0
+  draft.currentIndex = chars.length > 0 ? 0 : -1
 })
 
 export const nextCharacter = mutation(hanziStore, 'nextCharacter', (draft) => {
