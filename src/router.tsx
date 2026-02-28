@@ -7,9 +7,6 @@ export function getRouter() {
 		scrollRestoration: true,
 		defaultPreload: "intent",
 		defaultPreloadStaleTime: 0,
-		defaultRouterOpts: {
-			base: "/Tianzige",
-		},
 	});
 
 	return router;
