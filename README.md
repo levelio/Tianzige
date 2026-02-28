@@ -2,6 +2,10 @@
 
 专为 3-5 岁儿童设计的汉字书写学习应用，让学习汉字变得有趣而简单。
 
+## 🌐 在线体验
+
+**[https://levelio.github.io/Tianzige/](https://levelio.github.io/Tianzige/)**
+
 ![天天识字](https://img.shields.io/badge/版本-1.0.0-brightgreen)
 ![React](https://img.shields.io/badge/React-19-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
