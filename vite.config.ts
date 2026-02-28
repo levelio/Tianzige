@@ -17,10 +17,10 @@ const config = defineConfig({
 			strategy: ["url", "baseLocale"],
 		}),
 	],
-	base: "/Tianzige",
 	server: {
 		host: "0.0.0.0",
 	},
+	base: "/Tianzige/",
 	build: {
 		outDir: "dist",
 	},
