@@ -20,7 +20,7 @@ const config = defineConfig({
 	server: {
 		host: "0.0.0.0",
 	},
-	base: "/Tianzige/",
+	base: "/",
 	build: {
 		outDir: "dist",
 	},
