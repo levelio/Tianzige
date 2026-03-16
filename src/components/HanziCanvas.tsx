@@ -205,10 +205,47 @@ export const HanziCanvas = forwardRef<HanziCanvasHandle, HanziCanvasProps>(
 		return (
 			<div className="flex items-center justify-center">
 				<div
-					ref={containerRef}
-					className="bg-white rounded-3xl shadow-lg relative overflow-hidden"
+					className="relative rounded-3xl shadow-lg overflow-hidden bg-white"
 					style={{ width: 300, height: 300 }}
-				/>
+				>
+					{/* 田字格背景 */}
+					<svg
+						className="absolute inset-0 w-full h-full pointer-events-none"
+						viewBox="0 0 300 300"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<title>田字格</title>
+						{/* 外框，rx 与容器 rounded-3xl (24px) 保持一致 */}
+						<rect
+							x="1" y="1" width="298" height="298"
+							fill="none"
+							stroke="#F4A8A0"
+							strokeWidth="2"
+							rx="24"
+						/>
+						{/* 竖中线（虚线） */}
+						<line
+							x1="150" y1="1" x2="150" y2="299"
+							stroke="#F4A8A0"
+							strokeWidth="1"
+							strokeDasharray="8,5"
+						/>
+						{/* 横中线（虚线） */}
+						<line
+							x1="1" y1="150" x2="299" y2="150"
+							stroke="#F4A8A0"
+							strokeWidth="1"
+							strokeDasharray="8,5"
+						/>
+					</svg>
+
+					{/* HanziWriter 挂载容器，背景透明以透出田字格 */}
+					<div
+						ref={containerRef}
+						className="absolute inset-0"
+						style={{ width: 300, height: 300 }}
+					/>
+				</div>
 			</div>
 		);
 	},
